@@ -21,12 +21,11 @@ def get_price_list(data):
 		list.append(element[4]) # цена закрытия
 	return list
 
-def get_current_price():
+def get_current_price(client):
 	""" получение последней цены """
 	current_price = get_price_list(get_data(client))
 	return current_price[-1]
 
-# расчет EMA
 def EMA_calculate(data, period):
 	"""  """
 	pass
@@ -34,9 +33,9 @@ def EMA_calculate(data, period):
 def main():
 	# создание клиента
 	client = UMFutures(API_KEY, API_SECRET)
-	
-	data = get_data()
-	print(get_current_price())
+
+	data = get_data(client)
+	print(get_current_price(client))
 	print(get_price_list(data))
     
 if __name__ == '__main__':
