@@ -1,3 +1,2 @@
-# binance-futures-bot
-Bot for algorithmic trading on the Binance Futures market. Entirely written in Python using binance-connector-futures, pandas libraries.
-1. At the initial stage, the bot makes deals based on moving average EMAs for a given trading pair and timeframe
+# Торговый бот для Binance Futures
+Торговый бот на Python для криптовалютной биржи Binance для торговли на бессрочных фьючерсах. Используется торговая стратегия на быстрой и медленной скользящеих средних EMA.
