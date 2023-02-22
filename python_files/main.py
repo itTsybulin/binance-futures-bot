@@ -16,17 +16,17 @@ def get_data(client):
 
 def get_price_list(data) -> list:
 	""" получение цен закрытия последних 30 свечей """
-	close_prices = []
+	close_prices:list
 	for element in data[len(data) - ema_slow:len(data)]:
 		close_prices.append(element[4]) # цена закрытия
 	return close_prices
 
-def get_current_price(client) -> list:
+def get_current_price(client):
 	""" получение последней цены """
 	current_price = get_price_list(get_data(client))
 	return current_price[-1]
 
-def EMA_calculate(data, period) -> list:
+def EMA_calculate(data: list, period: int):
 	"""  """
 	pass
 
