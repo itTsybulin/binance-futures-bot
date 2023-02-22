@@ -7,26 +7,26 @@ API_SECRET = "<your_secret_key>"
 SYMBOL = "BTCUSDT"
 TIMEFRAME = "1h"
 
-ema_fast = 8
-ema_slow = 21
+ema_fast:int = 8
+ema_slow:int = 21
 
 def get_data(client):
 	""" получение данных """
 	return	client.klines(SYMBOL, TIMEFRAME)
 
-def get_price_list(data):
+def get_price_list(data) -> list:
 	""" получение цен закрытия последних 30 свечей """
-	list = []
+	close_prices = []
 	for element in data[len(data) - ema_slow:len(data)]:
-		list.append(element[4]) # цена закрытия
-	return list
+		close_prices.append(element[4]) # цена закрытия
+	return close_prices
 
-def get_current_price(client):
+def get_current_price(client) -> list:
 	""" получение последней цены """
 	current_price = get_price_list(get_data(client))
 	return current_price[-1]
 
-def EMA_calculate(data, period):
+def EMA_calculate(data, period) -> list:
 	"""  """
 	pass
 
