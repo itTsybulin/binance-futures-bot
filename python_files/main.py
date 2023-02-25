@@ -27,9 +27,7 @@ def get_current_price(client) -> list:
 	return current_price[-1]
 
 def calculate_ema(prices) -> list:
-    """
-    Функция принимает список ценовых значений и возвращает списки со средними EMA за период 8 и 21
-    """
+    """ Функция принимает список ценовых значений и возвращает списки со средними EMA за период 8 и 21 """
     ema8 = []
     ema21 = []
     alpha8 = 2 / (8 + 1)  # коэффициент сглаживания для периода 8
@@ -49,6 +47,10 @@ def calculate_ema(prices) -> list:
         
     return ema8, ema21
 
+def signal_generator(list_fast_ema, list_slow_ema) -> bool:
+	""" выдает true или false в зависимости после сравнения быстрой и медленной скользящей """
+	return list_fast_ema[-1]>list_slow_ema[-1]
+
 def main():
 	# создание клиента
 	client = UMFutures(API_KEY, API_SECRET)
@@ -56,6 +58,8 @@ def main():
 	data = get_data(client) # получение торговых данных
 	close_prices = get_price_list(data) # преобразование в список цен закрытия
 	ema_fast_list, ema_slow_list =calculate_ema(close_prices) # вычисление быстрой и медленной скользящих
+
+
     
 if __name__ == '__main__':
     main()
