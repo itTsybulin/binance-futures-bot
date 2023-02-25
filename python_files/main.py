@@ -15,7 +15,7 @@ def get_data(client):
 	""" получение данных """
 	return	client.klines(SYMBOL, TIMEFRAME)
 
-def get_price_list(data) -> list:
+def get_price_list(data: list) -> list:
 	""" получение цен закрытия последних 30 свечей """
 	close_prices = [elem[4] for elem in data[-30:]]
 	return list(map(float, close_prices))
@@ -25,7 +25,7 @@ def get_current_price(client) -> list:
 	current_price = get_price_list(get_data(client))
 	return current_price[-1]
 
-def calculate_ema(prices) -> list:
+def calculate_ema(prices: list) -> list:
 	""" Функция принимает список ценовых значений и возвращает списки со средними EMA за период 8 и 21 """
 	ema8 = []
 	ema21 = []
@@ -39,11 +39,10 @@ def calculate_ema(prices) -> list:
 	sma21 = sum(prices[:21]) / 21  # простое скользящее среднее для первых 21 значений
 	ema21.append(round(sma21, 2))  # первое значение EMA равно первому значению SMA
 	for price in prices[21:]:
-	    ema21.append(round((price - ema21[-1]) * alpha21 + ema21[-1], 2))
-        
-return ema8, ema21
+	    ema21.append(round((price - ema21[-1]) * alpha21 + ema21[-1], 2))   
+	return ema8, ema21
 
-def signal_generator(ema_fast_list, ema_slow_list) -> bool:
+def signal_generator(ema_fast_list: list, ema_slow_list: list) -> bool:
 	""" выдает true или false в зависимости после сравнения быстрой и медленной скользящей """
 	return ema_fast_list[-1]>ema_slow_list[-1]
 
@@ -55,7 +54,7 @@ def main():
 		data = get_data(client) # получение торговых данных
 		close_prices = get_price_list(data) # преобразование в список цен закрытия
 		ema_fast_list, ema_slow_list = calculate_ema(close_prices) # вычисление быстрой и медленной скользящих
-
+		
 		time.sleep(10)
     
 if __name__ == '__main__':
