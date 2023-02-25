@@ -1,4 +1,5 @@
 from binance.um_futures import UMFutures
+import time
 
 # ключи API и прочее
 API_KEY = "<your_api_key>"
@@ -47,19 +48,22 @@ def calculate_ema(prices) -> list:
         
     return ema8, ema21
 
-def signal_generator(list_fast_ema, list_slow_ema) -> bool:
+def signal_generator(ema_fast_list, ema_slow_list) -> bool:
 	""" выдает true или false в зависимости после сравнения быстрой и медленной скользящей """
-	return list_fast_ema[-1]>list_slow_ema[-1]
+	return ema_fast_list[-1]>ema_slow_list[-1]
 
 def main():
 	# создание клиента
 	client = UMFutures(API_KEY, API_SECRET)
 
-	data = get_data(client) # получение торговых данных
-	close_prices = get_price_list(data) # преобразование в список цен закрытия
-	ema_fast_list, ema_slow_list =calculate_ema(close_prices) # вычисление быстрой и медленной скользящих
-
-
+	while True:
+		data = get_data(client) # получение торговых данных
+		close_prices = get_price_list(data) # преобразование в список цен закрытия
+		ema_fast_list, ema_slow_list =calculate_ema(close_prices) # вычисление быстрой и медленной скользящих
+		if signal_generator(ema_fast_list, ema_slow_list):
+			print("")
+		else:
+			print("")
     
 if __name__ == '__main__':
     main()
