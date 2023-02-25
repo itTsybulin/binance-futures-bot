@@ -55,7 +55,7 @@ def main():
 		data = get_data(client) # получение торговых данных
 		close_prices = get_price_list(data) # преобразование в список цен закрытия
 		ema_fast_list, ema_slow_list = calculate_ema(close_prices) # вычисление быстрой и медленной скользящих
-		
+		print("Hello, this programm is running!")
 		time.sleep(10)
     
 if __name__ == '__main__':
