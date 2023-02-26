@@ -35,3 +35,16 @@ def calculate_ema(prices: list) -> list:
 def signal_generator(ema_fast_list: list, ema_slow_list: list) -> bool:
 	""" выдает true или false в зависимости после сравнения быстрой и медленной скользящей """
 	return ema_fast_list[-1]>ema_slow_list[-1]
+
+def none_signal():
+	""" если сигнал на продажу не изменился """
+	print("It's ok")
+
+def is_signal():
+	""" если сигнал на продажу изменился """
+	if temp:
+		print("Close all")
+		print("B")
+	else: 
+		print("Close all")
+		print("S")

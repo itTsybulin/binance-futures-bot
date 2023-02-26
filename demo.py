@@ -10,7 +10,7 @@ def signal():
 def none_signal():
     print("It's ok")
 
-def revers_signal(s):
+def is_signal(s):
     if s:
         print("Close all")
         print("B")
@@ -24,7 +24,7 @@ while True:
     if s == s:
         none_signal()
     else:
-        revers_signal(s)
+        is_signal(s)
     time.sleep(5)
 
 
