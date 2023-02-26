@@ -1,6 +1,6 @@
 import time
 
-a = 5
+a = 3
 b = 2
 
 def signal():
