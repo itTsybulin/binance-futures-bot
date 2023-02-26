@@ -14,17 +14,21 @@ def main():
 		global temp
 
 		if temp == signal_generator(ema8, ema21):
-			print("It's ok")
-		else:
+			print(f"текущая цена {SYMBOL} {close_prices[-1]} USD")
+		else: 
 			if temp:
-				print("Close all")
-				print("B")
+				print(f"""=============================
+закрываем все открытые позы
+открываем лонг {close_prices[-1]} USD
+=============================""")
 				temp = signal_generator(ema8, ema21)
 			else: 
-				print("Close all")
-				print("S")
+				print(f"""=============================
+закрываем все открытые позы
+открываем шорт {close_prices[-1]} USD
+=============================""")
 				temp = signal_generator(ema8, ema21)
-		time.sleep(55)
+		time.sleep(895)
 
 if __name__ == '__main__':
 	main()
