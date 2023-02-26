@@ -6,10 +6,9 @@ from config import *
 def main():
 	# создание клиента
 	client = UMFutures(API_KEY, API_SECRET)
-
-	while True:
-		print("Hello")
-		time.sleep(10
+	
+	data = get_data(client)
+	close_prices = get_price_list(data)
     	
 if __name__ == '__main__':
     main()

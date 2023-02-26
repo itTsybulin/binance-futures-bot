@@ -1,10 +1,12 @@
+from config import *
+
 def get_data(client):
 	""" получение данных """
 	return	client.klines(SYMBOL, TIMEFRAME)
 
 def get_price_list(data: list) -> list:
 	""" получение цен закрытия последних 30 свечей """
-	close_prices = [elem[4] for elem in data[-30:]]
+	close_prices = [ elem[4] for elem in data[-30:]]
 	return list(map(float, close_prices))
 
 def get_current_price(client) -> list:
